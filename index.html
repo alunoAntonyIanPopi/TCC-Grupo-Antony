@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Minha Logo</div>
+            <button class="hamburger" id="hamburger-btn">&#9776;</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#" class="faq-button">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="stock-carousel">
+        <div class="carousel-track">
+            <div class="stock-item">
+                <span>GLU3</span> <span>R$9,32</span> <span class="positive">+0,98%</span>
+            </div>
+            <div class="stock-item">
+                <span>PETR4</span> <span>R$36,95</span> <span class="positive">+0,05%</span>
+            </div>
+            <div class="stock-item">
+                <span>VALE3</span> <span>R$57,19</span> <span class="negative">-0,23%</span>
+            </div>
+            <div class="stock-item">
+                <span>ITUB4</span> <span>R$34,81</span> <span class="positive">+0,32%</span>
+            </div>
+            <div class="stock-item">
+                <span>ABEV3</span> <span>R$12,57</span> <span class="negative">-0,08%</span>
+            </div>
+            <div class="stock-item">
+                <span>GGBR4</span> <span>R$19,54</span> <span class="negative">-0,71%</span>
+            </div>
+            <!-- Duplicando os itens para criar a ilusão de loop infinito -->
+            <div class="stock-item">
+                <span>GLU3</span> <span>R$9,32</span> <span class="positive">+0,98%</span>
+            </div>
+            <div class="stock-item">
+                <span>PETR4</span> <span>R$36,95</span> <span class="positive">+0,05%</span>
+            </div>
+            <div class="stock-item">
+                <span>VALE3</span> <span>R$57,19</span> <span class="negative">-0,23%</span>
+            </div>
+            <!-- Adicione mais duplicações conforme necessário -->
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Bem-vindo ao Portal de Economia e Administração</h1>
+            <p>Explore análises de mercado, insights financeiros e estratégias empresariais para impulsionar seu
+                sucesso.</p>
+            <a href="#explore" class="hero-button">Explore Agora</a>
+        </div>
+    </div>
+
+    <div
+        class="performance-container d-flex flex-column-reverse flex-lg-row justify-content-center align-items-center py-5">
+        <!-- Bar Chart Section -->
+        <div class="performance-chart-container w-100 mb-4 mb-lg-0">
+            <div id="performance-grafico" style="width: 100%; height: 300px;"></div>
+
+            <script>
+                // Inicializa o gráfico Highcharts com as configurações 3D
+                const chart = Highcharts.chart('performance-grafico', {
+                    chart: {
+                        type: 'column',
+                        options3d: {
+                            enabled: true,
+                            alpha: 10,
+                            beta: 30,
+                            depth: 80,
+                            viewDistance: 20
+                        }
+                    },
+                    title: {
+                        text: 'Gráfico de Colunas 3D com Controle pelo Mouse'
+                    },
+                    xAxis: {
+                        categories: ['Categoria 1', 'Categoria 2', 'Categoria 3', 'Categoria 4']
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Valores'
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            depth: 40,
+                            colorByPoint: false
+                        }
+                    },
+                    series: [{
+                        name: 'Valores',
+                        data: [
+                            { y: 3, color: '#e2d3e2' },
+                            { y: 6, color: '#e2d3e2' },
+                            { y: 8, color: '#00bfff' },
+                            { y: 9, color: '#00bfff' }
+                        ]
+                    }]
+                });
+
+                // Evento para atualizar a rotação com o movimento do mouse
+                document.addEventListener('mousemove', function (e) {
+                    const beta = (e.pageX / window.innerWidth) * 20 - 20;
+                    const alpha = (e.pageY / window.innerHeight) * 10 - 10;
+
+                    chart.update({
+                        chart: {
+                            options3d: {
+                                beta: beta,
+                                alpha: alpha
+                            }
+                        }
+                    }, false, false, false);
+
+                    chart.redraw(false);
+                });
+            </script>
+        </div>
+
+        <!-- Text and CTA Section -->
+        <div class="performance-text-container w-100">
+            <h6 class="performance-subtitle text-primary">Maximize a eficiência</h6>
+            <h1 class="performance-title">Otimize o desempenho</h1>
+            <p class="performance-description">Desbloqueie todo o potencial dos seus dados financeiros com nossos
+                recursos de ponta
+                plataforma de análise. Obtenha insights sem precedentes, tome decisões informadas e impulsione o
+                crescimento sustentável
+                para o seu negócio.</p>
+            <p class="performance-description">Revolucione sua gestão financeira com nosso software intuitivo e baseado
+                em nuvem
+                ferramentas. Simplifique seus processos, reduza erros e concentre-se em iniciativas estratégicas que
+                impulsionem seu
+                organização adiante.</p>
+            <a href="#" class="performance-cta-btn btn btn-primary">Comece hoje</a>
+        </div>
+    </div>
+
+    <section class="showcase-section">
+        <div class="text-container">
+            <h1>Elevando estratégias de marketing para um crescimento incomparável</h1>
+            <p>Libere todo o potencial de seus esforços de marketing com nosso conjunto abrangente de soluções baseadas
+                em dados
+                soluções.</p>
+        </div>
+        <div class="screens-container"></div>
+    </section>
+
+    <section class="economy-cards">
+        <div class="cards-container">
+            <!-- Card Investimentos -->
+            <div class="economy-card" onclick="openModal('investimentosModal')">
+                <div class="card-icon">💹</div>
+                <h3>Investimentos</h3>
+                <p>Maximize seus rendimentos com estratégias eficazes de investimento.</p>
+            </div>
+            <div id="investimentosModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('investimentosModal')">&times;</span>
+                    <h2>Investimentos</h2>
+                    <p>Investir é uma das maneiras mais eficazes de garantir o crescimento do seu patrimônio. Existem
+                        várias opções de investimentos, como ações, imóveis, fundos de investimento e criptomoedas, cada
+                        uma com seu nível de risco e retorno. A chave é diversificar seus investimentos e entender o seu
+                        perfil de investidor para tomar decisões informadas. É importante também considerar o longo
+                        prazo, pois o mercado financeiro pode ser volátil no curto prazo, mas tende a se estabilizar com
+                        o tempo.</p>
+                    <p><strong>Dicas:</strong> Nunca invista mais do que você pode perder, estude cada tipo de
+                        investimento e sempre tenha um fundo de emergência.</p>
+                </div>
+            </div>
+
+            <!-- Card Mercado Financeiro -->
+            <div class="economy-card" onclick="openModal('mercadoModal')">
+                <div class="card-icon">📈</div>
+                <h3>Mercado Financeiro</h3>
+                <p>Explore como o mercado financeiro opera e participe ativamente.</p>
+            </div>
+            <div id="mercadoModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('mercadoModal')">&times;</span>
+                    <h2>Mercado Financeiro</h2>
+                    <p>O mercado financeiro é um sistema onde compradores e vendedores negociam ativos financeiros, como
+                        ações, títulos, commodities e moedas. Ele é composto por diversas bolsas de valores, bancos,
+                        corretoras e outras instituições que facilitam essas transações. A participação no mercado
+                        financeiro pode ser feita de diversas formas, desde a compra de ações de empresas na bolsa até a
+                        negociação de câmbio ou derivativos.</p>
+                    <p><strong>Dicas:</strong> Conheça o funcionamento da bolsa de valores, estude o impacto das taxas
+                        de juros e acompanhe as notícias econômicas que podem afetar o mercado.</p>
+                </div>
+            </div>
+
+            <!-- Card Planejamento Financeiro -->
+            <div class="economy-card" onclick="openModal('planejamentoModal')">
+                <div class="card-icon">📊</div>
+                <h3>Planejamento Financeiro</h3>
+                <p>Alcance seus objetivos com um planejamento financeiro eficiente.</p>
+            </div>
+            <div id="planejamentoModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('planejamentoModal')">&times;</span>
+                    <h2>Planejamento Financeiro</h2>
+                    <p>Planejamento financeiro é o processo de criar uma estratégia para gerenciar suas finanças de
+                        forma a atingir seus objetivos. Ele envolve a análise de suas receitas, despesas, investimentos
+                        e dívidas, para garantir que você esteja no caminho certo para alcançar suas metas financeiras,
+                        seja para a compra de uma casa, a aposentadoria ou a criação de um fundo de emergência.</p>
+                    <p><strong>Dicas:</strong> Elabore um orçamento mensal, controle seus gastos, crie metas financeiras
+                        de curto e longo prazo e busque reduzir suas dívidas.</p>
+                </div>
+            </div>
+
+            <!-- Card Economia Global -->
+            <div class="economy-card" onclick="openModal('economiaModal')">
+                <div class="card-icon">🌍</div>
+                <h3>Economia Global</h3>
+                <p>Entenda as tendências globais e como elas afetam sua vida.</p>
+            </div>
+            <div id="economiaModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('economiaModal')">&times;</span>
+                    <h2>Economia Global</h2>
+                    <p>A economia global é composta por todas as economias nacionais que interagem entre si, por meio de
+                        comércio, investimentos e políticas econômicas. As flutuações na economia global podem afetar
+                        diretamente a inflação, o desemprego, os preços de commodities e até a taxa de câmbio de
+                        diferentes moedas. Tendências como globalização, automação e mudanças climáticas também têm um
+                        impacto crescente na economia mundial.</p>
+                    <p><strong>Dicas:</strong> Fique atento a mudanças em políticas internacionais, como tarifas e
+                        acordos comerciais, e como elas podem impactar os preços de bens e serviços.</p>
+                </div>
+            </div>
+
+            <!-- Card Finanças Pessoais -->
+            <div class="economy-card" onclick="openModal('financasModal')">
+                <div class="card-icon">💵</div>
+                <h3>Finanças Pessoais</h3>
+                <p>Gerencie seu orçamento para obter mais estabilidade financeira.</p>
+            </div>
+            <div id="financasModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('financasModal')">&times;</span>
+                    <h2>Finanças Pessoais</h2>
+                    <p>Gerenciar suas finanças pessoais é essencial para alcançar uma vida financeira equilibrada. Isso
+                        envolve controlar seus gastos, poupar e investir, e evitar o endividamento excessivo. Um bom
+                        controle financeiro também envolve definir metas de curto, médio e longo prazo, e acompanhar
+                        regularmente seu progresso para ajustá-las conforme necessário.</p>
+                    <p><strong>Dicas:</strong> Utilize aplicativos de finanças para controlar seus gastos, crie uma
+                        reserva de emergência e evite usar crédito sem planejamento.</p>
+                </div>
+            </div>
+
+            <!-- Card Empreendedorismo -->
+            <div class="economy-card" onclick="openModal('empreendedorismoModal')">
+                <div class="card-icon">🚀</div>
+                <h3>Empreendedorismo</h3>
+                <p>Transforme suas ideias em negócios lucrativos e inovadores.</p>
+            </div>
+            <div id="empreendedorismoModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('empreendedorismoModal')">&times;</span>
+                    <h2>Empreendedorismo</h2>
+                    <p>Empreendedorismo é o processo de criar e administrar novos negócios com o objetivo de gerar
+                        lucro. Ele envolve desde a concepção de uma ideia inovadora até a implementação e escalabilidade
+                        do negócio. Empreendedores precisam ter uma visão clara de mercado, boa gestão de recursos e
+                        habilidade para lidar com riscos e incertezas.</p>
+                    <p><strong>Dicas:</strong> Planeje o seu negócio cuidadosamente, busque entender o público-alvo,
+                        invista em marketing digital e esteja preparado para as dificuldades que surgem no caminho.</p>
+                </div>
+            </div>
+
+    </section>
+
+
+    <section class="particles-section">
+        <div id="particles-js"></div> <!-- Fundo com partículas -->
+        <div class="content">
+            <h1>Descubra o Poder da Economia Global</h1>
+            <p>A economia global está em constante mudança, trazendo novas oportunidades e desafios. Fique atento às
+                tendências e saiba como aproveitar o potencial desse ambiente dinâmico.</p>
+            <button class="cta-btn">Saiba Mais</button>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2 class="team-title">Nosso Time</h2>
+        <div class="team-container">
+            <div class="team-member">
+                <div class="team-photo" style="background-image: url('./img/ariane.jpg');"></div>
+                <div class="team-info">
+                    <p class="team-name">Ariane</p>
+                    <p class="team-role">Responsavel pela documentação</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-photo" style="background-image: url('./img/Yasmin1.jpg');"></div>
+                <div class="team-info">
+                    <p class="team-name">Yasmin</p>
+                    <p class="team-role">Responsavel pelo Design</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-photo" style="background-image: url('./img/antony.jpg');"></div>
+                <div class="team-info">
+                    <p class="team-name">Antony</p>
+                    <p class="team-role">Desenvolvedor e líder da equipe</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-photo" style="background-image: url('./img/lays.jpg');"></div>
+                <div class="team-info">
+                    <p class="team-name">Lays</p>
+                    <p class="team-role">Responsavel pela apresentação</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial-area">
+        <div class="testimonial-wrapper">
+            <h2 class="testimonial-heading">O que nossos clientes dizem</h2>
+            <div class="testimonial-items">
+                <div class="testimonial-block">
+                    <p class="testimonial-quote">"O portal tem sido uma ferramenta incrível para entender os principais
+                        aspectos da economia. As análises são claras e objetivas."</p>
+                    <h3 class="testimonial-author">Lucas Andrade</h3>
+                    <span class="testimonial-position">Empresário</span>
+                </div>
+                <div class="testimonial-block">
+                    <p class="testimonial-quote">"Com as informações fornecidas, pude tomar decisões mais assertivas na
+                        administração da minha empresa."</p>
+                    <h3 class="testimonial-author">Mariana Souza</h3>
+                    <span class="testimonial-position">Administradora Financeira</span>
+                </div>
+                <div class="testimonial-block">
+                    <p class="testimonial-quote">"Recomendo fortemente para qualquer pessoa que queira aprender mais
+                        sobre economia e gestão de negócios."</p>
+                    <h3 class="testimonial-author">Carlos Silva</h3>
+                    <span class="testimonial-position">Consultor de Negócios</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="terms-section">
+        <div class="terms-content">
+            <div class="terms-text">
+                <p class="privacy-policy">Política de Privacidade</p>
+                <h2>Termos de Uso</h2>
+                <p class="terms-description">
+                    Conheça nossas políticas e termos para entender como protegemos seus dados e como sua informação
+                    será utilizada em nossa plataforma.
+                </p>
+                <p class="terms-details">
+                    Estamos empenhados em ajudá-lo a impulsionar o sucesso do seu negócio. Entre em contato conosco para
+                    obter uma solução personalizada que atenda às suas necessidades específicas.
+                </p>
+                <a href="#" class="demo-btn">Agendar Demonstração</a>
+            </div>
+            <div class="terms-image">
+                <img src="./img/apontando1.png" alt="Homem apontando" />
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <h3 class="faq-heading">Dúvidas Frequentes</h3>
+        <p class="faq-subheading">
+            Veja as respostas para as perguntas mais comuns sobre nossos serviços e funcionalidades.
+        </p>
+        <div class="faq-grid">
+            <!-- Card 1 -->
+            <div class="faq-item" onclick="openFaqModal('faq-modal-benefits')">
+                <div class="faq-icon">🎯</div>
+                <h4 class="faq-title">Benefícios da Plataforma</h4>
+                <p class="faq-text">Nossa plataforma é projetada para maximizar a eficiência e o crescimento do seu
+                    negócio de maneira simples.</p>
+                <a href="#" class="faq-link">Saiba mais</a>
+            </div>
+    
+            <!-- Card 2 -->
+            <div class="faq-item" onclick="openFaqModal('faq-modal-testimonials')">
+                <div class="faq-icon">💬</div>
+                <h4 class="faq-title">Depoimentos de Clientes</h4>
+                <p class="faq-text">Veja o que os clientes estão dizendo sobre como nossa plataforma ajudou seus
+                    negócios a crescer.</p>
+                <a href="#" class="faq-link">Saiba mais</a>
+            </div>
+    
+            <!-- Card 3 -->
+            <div class="faq-item" onclick="openFaqModal('faq-modal-about')">
+                <div class="faq-icon">🏢</div>
+                <h4 class="faq-title">Sobre a Empresa</h4>
+                <p class="faq-text">Conheça nossa história, valores e como estamos transformando o gerenciamento
+                    financeiro empresarial.</p>
+                <a href="#" class="faq-link">Saiba mais</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modals -->
+    <div id="faq-modal-benefits" class="faq-modal">
+        <div class="faq-modal-content">
+            <span class="faq-modal-close" onclick="closeFaqModal('faq-modal-benefits')">&times;</span>
+            <h4>Benefícios da Plataforma</h4>
+            <p>Nossa plataforma oferece ferramentas avançadas para gestão financeira, análise de dados em tempo real e relatórios detalhados para ajudar a alcançar seus objetivos de negócio. Explore como ela pode transformar a forma como você gerencia sua empresa.</p>
+        </div>
+    </div>
+    
+    <div id="faq-modal-testimonials" class="faq-modal">
+        <div class="faq-modal-content">
+            <span class="faq-modal-close" onclick="closeFaqModal('faq-modal-testimonials')">&times;</span>
+            <h4>Depoimentos de Clientes</h4>
+            <p>“Desde que começamos a usar a plataforma, nossa produtividade aumentou em 50%! Não podemos imaginar nossa rotina sem ela.” – João Silva, CEO da Empresa X.</p>
+        </div>
+    </div>
+    
+    <div id="faq-modal-about" class="faq-modal">
+        <div class="faq-modal-content">
+            <span class="faq-modal-close" onclick="closeFaqModal('faq-modal-about')">&times;</span>
+            <h4>Sobre a Empresa</h4>
+            <p>Somos líderes em soluções financeiras, comprometidos em oferecer o melhor suporte e inovação para empresas de todos os tamanhos. Nossa missão é simplificar o gerenciamento financeiro e impulsionar negócios ao sucesso.</p>
+        </div>
+    </div>
+
+    <section class="contact-newsletter">
+        <div class="contact-container">
+            <div class="contact-left">
+                <h3>Contate-nos</h3>
+                <ul>
+                    <li><i class="icon-check"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                                viewBox="0 -960 960 960" width="24px" fill="#78A75A">
+                                <path
+                                    d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                            </svg></i>Espaço reservado</li>
+                    <li><i class="icon-check"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                                viewBox="0 -960 960 960" width="24px" fill="#78A75A">
+                                <path
+                                    d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                            </svg></i>Resposta rapida</li>
+                    <li><i class="icon-check"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                                viewBox="0 -960 960 960" width="24px" fill="#78A75A">
+                                <path
+                                    d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                            </svg></i>Fale com pessoal da equipe</li>
+                </ul>
+            </div>
+            <div class="contact-right">
+                <h3>Fique por Dentro</h3>
+                <form>
+                    <input type="email" placeholder="Assine nossa Newsletter" />
+                    <input type="text" placeholder="Siga-nos nas Redes" />
+                    <input type="text" placeholder="Contate-nos" />
+                    <button type="submit">Saiba Mais</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <div id="map">
+        <iframe width="100%" height="400" frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d467266.3812253983!2d-47.9264!3d-25.0144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c92751c907e25d%3A0x8c0c62c5b5d5a1d7!2sCananeia%2C%20SP%2C%20Brazil!5e0!3m2!1sen!2sus!4v1599535704327!5m2!1sen!2sus"
+            allowfullscreen>
+        </iframe>
+    </div>
+    </div>
+    </section>
+
+    <footer class="footer-container">
+        <div class="footer-content">
+            <!-- Logo and Copyright -->
+            <div class="footer-section logo-section">
+                <svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="50px"
+                    fill="#fff">
+                    <path
+                        d="M260-840q-45 0-72.5 50T160-680q0 63 17.5 111.5T210-496l110-22q13-32 26.5-73t13.5-89q0-60-27.5-110T260-840Zm55 520q19 0 32-14t13-39q0-17-8-35t-16-32l-96 20q0 40 17.5 70t57.5 30Zm385-320q-45 0-72.5 50T600-480q0 48 13.5 88.5T640-318l110 22q15-24 32.5-72T800-480q0-60-27.5-110T700-640Zm-55 520q40 0 57.5-30t17.5-70l-96-20q-8 14-16 32t-8 35q0 20 12.5 36.5T645-120ZM315-240q-77 0-117-57t-38-128l-18-27q-11-17-36.5-77T80-680q0-103 51-171.5T260-920q85 0 132.5 75.5T440-680q0 58-16 107t-28 79l8 13q8 14 22 44.5t14 63.5q0 57-35.5 95T315-240ZM645-40q-54 0-89.5-38T520-173q0-33 14-63.5t22-44.5l8-13q-12-30-28-79t-16-107q0-89 47.5-164.5T700-720q78 0 129 68.5T880-480q0 91-25.5 150.5T818-253l-18 28q1 71-38.5 128T645-40Z" />
+                </svg>
+                <p>&copy; 2024 Finacel, Inc. Todos os direitos reservados.</p>
+            </div>
+            <!-- Quick Links -->
+            <div class="footer-section quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Our Solutions -->
+            <div class="footer-section our-solutions">
+                <h4>Nossas soluções</h4>
+                <ul>
+                    <li><a href="#">Financiar</a></li>
+                    <li><a href="#">Administração</a></li>
+                    <li><a href="#">HR</a></li>
+                    <li><a href="#">IT</a></li>
+                </ul>
+            </div>
+            <!-- Stay Connected -->
+            <div class="footer-section stay-connected">
+                <h4>Fique conectado</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 100,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#ffffff"
+                },
+                shape: {
+                    type: "circle"
+                },
+                opacity: {
+                    value: 0.8
+                },
+                size: {
+                    value: 5
+                },
+                move: {
+                    enable: true,
+                    speed: 3,
+                    random: true
+                }
+            },
+            interactivity: {
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
