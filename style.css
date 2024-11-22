@@ -10,6 +10,7 @@ body {
   color: #333;
 }
 
+/* Estilos Gerais */
 header {
   background-color: white;
   padding: 1em 0;
@@ -18,25 +19,41 @@ header {
 header nav {
   display: flex;
   justify-content: space-between;
+  /* Espaço entre logo e menu */
   align-items: center;
+  /* Alinha verticalmente os itens */
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  position: relative;
+  /* Permite posicionamento absoluto dos itens filhos */
 }
 
 header .logo {
   color: #333;
   font-size: 1.8em;
   font-weight: bold;
-  margin-right: 2em;
 }
 
-header ul {
+input#menu-toggle {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 2em;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Links do Menu */
+.nav-links {
   list-style: none;
   display: flex;
   gap: 2em;
   margin: 0;
   padding: 0;
+  transition: max-height 0.3s ease-in-out;
 }
 
 header a {
@@ -49,6 +66,7 @@ header a:hover {
   color: #007bff;
 }
 
+/* Botão FAQ */
 header .faq-button {
   font-weight: bold;
   color: #007bff;
@@ -58,76 +76,51 @@ header .faq-button:hover {
   text-decoration: underline;
 }
 
-.faq-button {
-  background-color: #357ab8;
-  padding: 0.5em 1em;
-  border-radius: 5px;
-}
-
-/* Menu Hamburguer */
-.hamburger {
-  display: none;
-  font-size: 2em;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #333;
-}
-
-.nav-links {
-  display: flex;
-}
-
-.nav-links li {
-  list-style: none;
-}
-
-.nav-links a {
-  color: #333;
-  text-decoration: none;
-  font-size: 1.1em;
-}
-
-.nav-links a:hover {
-  color: #007bff;
-}
-
-/* Responsividade para telas menores */
+/* Responsividade */
 @media (max-width: 1024px) {
   header nav {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row;
+    /* Mantém logo e menu em linha */
+    justify-content: space-between;
+    align-items: center;
   }
 
-  header .logo {
-    margin-right: 0;
-    margin-bottom: 1em;
-  }
-
-  header .hamburger {
+  .menu-icon {
     display: block;
-    background-color: transparent;
+    /* Mostra o ícone do menu */
   }
 
-  header .nav-links {
+  .nav-links {
     display: none;
+    /* Oculta o menu por padrão */
     flex-direction: column;
-    gap: 1em;
-    margin-top: 1em;
+    /* Organiza links verticalmente */
+    position: absolute;
+    /* Menu aparece abaixo */
+    top: 100%;
+    /* Alinha com a parte inferior do menu */
+    left: 0;
     width: 100%;
-    text-align: center;
+    /* Ocupa a largura total */
+    background-color: white;
+    /* Fundo para contraste */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Sombra para destacar */
+    padding: 1em 0;
+    z-index: 10;
   }
 
-  header .nav-links.active {
+  input#menu-toggle:checked~.nav-links {
     display: flex;
+    /* Mostra o menu ao marcar o checkbox */
   }
 
-  header .nav-links a {
+  .nav-links a {
+    padding: 0.5em 1em;
+    text-align: left;
     font-size: 1.2em;
-    padding: 0.5em;
   }
 }
-
 
 /* Estilo da Hero Section */
 .hero-section {

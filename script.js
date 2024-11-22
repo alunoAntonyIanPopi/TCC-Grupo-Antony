@@ -5,7 +5,7 @@ new Chart(ctx, {
     options: { /* opções de animação */ }
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
     const track = document.querySelector('.carousel-track');
     const cloneItems = track.innerHTML; // Clonamos os itens originais
 
@@ -13,7 +13,7 @@ $(document).ready(function(){
     track.innerHTML += cloneItems;
 
     let resetPoint = track.scrollWidth / 2; // Ponto em que vamos reiniciar o carrossel
-    
+
     // Função para verificar a posição e reiniciar quando necessário
     function animateCarousel() {
         if (track.scrollLeft >= resetPoint) {
@@ -27,14 +27,7 @@ $(document).ready(function(){
     setInterval(animateCarousel, 10); // Ajuste o tempo para controlar a velocidade
 });
 
-// Menu hamburguer
-
-document.getElementById("hamburger-btn").addEventListener("click", function() {
-    var navLinks = document.getElementById("nav-links");
-    navLinks.classList.toggle("active");
-  });
-
-  function openModal(modalId) {
+function openModal(modalId) {
     var modal = document.getElementById(modalId);
     modal.style.display = "block";
 }
@@ -45,7 +38,7 @@ function closeModal(modalId) {
 }
 
 // Fechar o modal se o usuário clicar fora da caixa modal
-window.onclick = function(event) {
+window.onclick = function (event) {
     var modals = document.getElementsByClassName("modal");
     for (var i = 0; i < modals.length; i++) {
         if (event.target === modals[i]) {

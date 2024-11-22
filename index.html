@@ -19,14 +19,15 @@
 
     <header>
         <nav>
-            <div class="logo">Minha Logo</div>
-            <button class="hamburger" id="hamburger-btn">&#9776;</button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Serviços</a></li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#" class="faq-button">FAQ</a></li>
+            <div class="logo">Financel</div>
+            <input type="checkbox" id="menu-toggle" />
+            <label for="menu-toggle" class="menu-icon">☰</label>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="#faq" class="faq-button">FAQ</a></li>
             </ul>
         </nav>
     </header>
@@ -65,7 +66,7 @@
         </div>
     </div>
 
-    <div class="hero-section">
+    <div class="hero-section" id="hero">
         <div class="hero-content">
             <h1>Bem-vindo ao Portal de Economia e Administração</h1>
             <p>Explore análises de mercado, insights financeiros e estratégias empresariais para impulsionar seu
@@ -168,7 +169,7 @@
         <div class="screens-container"></div>
     </section>
 
-    <section class="economy-cards">
+    <section class="economy-cards" id="servicos">
         <div class="cards-container">
             <!-- Card Investimentos -->
             <div class="economy-card" onclick="openModal('investimentosModal')">
@@ -335,7 +336,7 @@
         </div>
     </section>
 
-    <section class="testimonial-area">
+    <section class="testimonial-area" id="sobre">
         <div class="testimonial-wrapper">
             <h2 class="testimonial-heading">O que nossos clientes dizem</h2>
             <div class="testimonial-items">
@@ -382,7 +383,7 @@
         </div>
     </section>
 
-    <section class="faq-section">
+    <section class="faq-section" id="faq">
         <h3 class="faq-heading">Dúvidas Frequentes</h3>
         <p class="faq-subheading">
             Veja as respostas para as perguntas mais comuns sobre nossos serviços e funcionalidades.
@@ -396,7 +397,7 @@
                     negócio de maneira simples.</p>
                 <a href="#" class="faq-link">Saiba mais</a>
             </div>
-    
+
             <!-- Card 2 -->
             <div class="faq-item" onclick="openFaqModal('faq-modal-testimonials')">
                 <div class="faq-icon">💬</div>
@@ -405,7 +406,7 @@
                     negócios a crescer.</p>
                 <a href="#" class="faq-link">Saiba mais</a>
             </div>
-    
+
             <!-- Card 3 -->
             <div class="faq-item" onclick="openFaqModal('faq-modal-about')">
                 <div class="faq-icon">🏢</div>
@@ -416,33 +417,38 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Modals -->
     <div id="faq-modal-benefits" class="faq-modal">
         <div class="faq-modal-content">
             <span class="faq-modal-close" onclick="closeFaqModal('faq-modal-benefits')">&times;</span>
             <h4>Benefícios da Plataforma</h4>
-            <p>Nossa plataforma oferece ferramentas avançadas para gestão financeira, análise de dados em tempo real e relatórios detalhados para ajudar a alcançar seus objetivos de negócio. Explore como ela pode transformar a forma como você gerencia sua empresa.</p>
+            <p>Nossa plataforma oferece ferramentas avançadas para gestão financeira, análise de dados em tempo real e
+                relatórios detalhados para ajudar a alcançar seus objetivos de negócio. Explore como ela pode
+                transformar a forma como você gerencia sua empresa.</p>
         </div>
     </div>
-    
+
     <div id="faq-modal-testimonials" class="faq-modal">
         <div class="faq-modal-content">
             <span class="faq-modal-close" onclick="closeFaqModal('faq-modal-testimonials')">&times;</span>
             <h4>Depoimentos de Clientes</h4>
-            <p>“Desde que começamos a usar a plataforma, nossa produtividade aumentou em 50%! Não podemos imaginar nossa rotina sem ela.” – João Silva, CEO da Empresa X.</p>
+            <p>“Desde que começamos a usar a plataforma, nossa produtividade aumentou em 50%! Não podemos imaginar nossa
+                rotina sem ela.” – João Silva, CEO da Empresa X.</p>
         </div>
     </div>
-    
+
     <div id="faq-modal-about" class="faq-modal">
         <div class="faq-modal-content">
             <span class="faq-modal-close" onclick="closeFaqModal('faq-modal-about')">&times;</span>
             <h4>Sobre a Empresa</h4>
-            <p>Somos líderes em soluções financeiras, comprometidos em oferecer o melhor suporte e inovação para empresas de todos os tamanhos. Nossa missão é simplificar o gerenciamento financeiro e impulsionar negócios ao sucesso.</p>
+            <p>Somos líderes em soluções financeiras, comprometidos em oferecer o melhor suporte e inovação para
+                empresas de todos os tamanhos. Nossa missão é simplificar o gerenciamento financeiro e impulsionar
+                negócios ao sucesso.</p>
         </div>
     </div>
 
-    <section class="contact-newsletter">
+    <section class="contact-newsletter" id="contato">
         <div class="contact-container">
             <div class="contact-left">
                 <h3>Contate-nos</h3>
@@ -490,8 +496,7 @@
         <div class="footer-content">
             <!-- Logo and Copyright -->
             <div class="footer-section logo-section">
-                <svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="50px"
-                    fill="#fff">
+                <svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="50px" fill="#fff">
                     <path
                         d="M260-840q-45 0-72.5 50T160-680q0 63 17.5 111.5T210-496l110-22q13-32 26.5-73t13.5-89q0-60-27.5-110T260-840Zm55 520q19 0 32-14t13-39q0-17-8-35t-16-32l-96 20q0 40 17.5 70t57.5 30Zm385-320q-45 0-72.5 50T600-480q0 48 13.5 88.5T640-318l110 22q15-24 32.5-72T800-480q0-60-27.5-110T700-640Zm-55 520q40 0 57.5-30t17.5-70l-96-20q-8 14-16 32t-8 35q0 20 12.5 36.5T645-120ZM315-240q-77 0-117-57t-38-128l-18-27q-11-17-36.5-77T80-680q0-103 51-171.5T260-920q85 0 132.5 75.5T440-680q0 58-16 107t-28 79l8 13q8 14 22 44.5t14 63.5q0 57-35.5 95T315-240ZM645-40q-54 0-89.5-38T520-173q0-33 14-63.5t22-44.5l8-13q-12-30-28-79t-16-107q0-89 47.5-164.5T700-720q78 0 129 68.5T880-480q0 91-25.5 150.5T818-253l-18 28q1 71-38.5 128T645-40Z" />
                 </svg>
@@ -503,7 +508,7 @@
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
+                    <li><a href="#servicos">Services</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>
